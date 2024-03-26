@@ -1,28 +1,76 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>The generated source code Web Application for Sakai</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Build a web application easier with this tool</title>
+    <th:block th:include="fragments/head"></th:block>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
+    <th:block th:include="fragments/hnav"></th:block>
+    
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-sm-5 col-md-4 col-lg-4 col-xl-4">
+                <form class="form-horizontal" th:action="@{/generate-qrcode}" autocomplete="on">
+                  </fieldset>
+                    <legend>How to develop a new tool in Sakai</legend>
+                    <div class="instruction">
+                        <span class="reqStarInline">*</span> Indicates a required field.
+                    </div>
+        
+                    <div class="form-group">
+                            <label class="form-control-label col-sm-2" for="groupId">
+                                <span class="red">*</span> Group Id
+                            </label>
+                            <div class="col-sm-10">
+                                <input class="form-control sakai-glow" type="text" name="groupId" id="groupId" placeholder="Please enter a package name for the project" value="org.sakaiproject.tool.helloworld">
+                            </div>
+                    </div>
+                    
+                    <div class="form-group">
+                            <label class="form-control-label col-sm-2" for="artifactId">
+                                <span class="red">*</span> Artifact Id
+                            </label>
+                            <div class="col-sm-10">
+                                <input class="form-control sakai-glow" type="text" name="artifactId" id="artifactId" placeholder="Please enter name for the project" value="helloworld">
+                            </div>
+                    </div>
+                    <div class="form-group">
+                            <label class="form-control-label col-sm-2" for="version">
+                                <span class="red">*</span> Sakai version
+                            </label>
+                          <div class="col-sm-10">
+                            <select class="form-select" name="version" aria-label="Sakai version">
+                              <option selected value="23.0">23.0</option>
+                            </select>
+                          </div>
+                    </div>
+                    <div class="act">
+                        <input type="submit" id="eventSubmit_doGenerate" class="active" name="eventSubmit_doGenerate" value="Generate & Download source code" accesskey="g">
+                    </div>
+                  </fieldset>
+                </form>
+          </div>
+          <!-- End Colunn 1 -->
+          
+          <!-- Column 2 -->
+          <div class="col-sm-7 col-md-8 col-lg-8 col-xl-8">
+              <div><a onClick="return openGuide();" href="#">View fullly Guideline.</a></div>
+              <div class="embed-responsive"><embed type="text/html" width="100%" height="600" th:src="@{/resources/guideline/res/index.html}"></embed></div>
+              
+          </div>
 
-    <div th:replace="~{fragments/header :: header}">Header</div>
-    <div class="container">
-        <div class="text-center">
-            <div class="lead">
-                <H1>Refer document at http://www.thymeleaf.org/doc/articles/layouts.html to make your own layout.</H1>
-            </div>
-            <div class="lead">Welcome to the generated source code Web Application for Sakai.</div>
-			<p>Login userId: <span th:text="${session.userDisplayName}"></span></p>
-			<p>Login Display Username: <span th:text="${session.userEid}"></span></p>
-            <p>
-                <a id="signup" class="btn btn-success btn-lg">Sign up</a>
-            </p>
-        </div>
-        <div th:insert="~{fragments/footer :: footer}">&copy; 2017 The MKS Group</div>
-    </div>
+      </div> <!-- row -->
+
+    </div> <!-- container -->
+    <div th:replace="~{fragments/footer :: footer}">&copy; Thach.Le</div>
+
+    <script>
+      function openGuide() {
+        window.open(_ctx + '/resources/guideline/res/index.html');
+
+      }
+    </script>
 
 </body>
 </html>

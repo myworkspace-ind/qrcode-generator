@@ -15,6 +15,26 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
+       <dependency>
+           <groupId>com.google.zxing</groupId>
+           <artifactId>core</artifactId>
+           <version>3.4.1</version>
+       </dependency>
+ 
+       <dependency>
+           <groupId>com.google.zxing</groupId>
+           <artifactId>javase</artifactId>
+           <version>3.4.1</version>
+       </dependency>
+
+      <!-- JUNIT -->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+      </dependency>
+
 	</dependencies>
 	<build>
 		<!-- configure the build to use the standard maven structure -->

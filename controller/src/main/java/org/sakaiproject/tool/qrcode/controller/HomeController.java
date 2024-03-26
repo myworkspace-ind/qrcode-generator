@@ -19,17 +19,25 @@
 
 package org.sakaiproject.tool.qrcode.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.sakaiproject.tool.qrcode.common.QRCode;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import com.google.zxing.WriterException;
 
 /**
  * Handles requests for the application home page.
@@ -66,5 +74,29 @@ public class HomeController extends BaseController {
 		mav.addObject("userDisplayName", getCurrentUserDisplayName());
 
 		return mav;
+	}
+	
+	/**
+	 * @param allRequestParams
+	 * @param response
+	 * @throws IOException
+	 * @throws WriterException 
+	 */
+	@RequestMapping(value = "/generate-qrcode")
+	@ResponseBody
+	public void generateQRCode(@RequestParam Map<String, Object> allRequestParams, HttpServletResponse response) throws IOException, WriterException {
+		Object filename = "MyWorkspace_Generate_QRCode.png";
+		// Set headers for the response.
+        String headerValue = String.format("attachment; filename=\"%s\"", filename );
+        response.setHeader(headerKey, headerValue);
+        
+        // [TODO]: Get all input data from client. 
+        String text = "";
+		File logo = null;
+		int width = 300;
+		int height = 300;
+		
+		QRCode qrCode = new QRCode(logo, width, height);
+		qrCode.generateWithLogo(text, response.getOutputStream());
 	}
 }

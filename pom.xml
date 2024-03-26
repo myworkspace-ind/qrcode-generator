@@ -50,6 +50,7 @@
         <sakai.log4j.version>2.20.0</sakai.log4j.version>
         <sakai.slf4j.version>1.7.36</sakai.slf4j.version>
         <sakai.poi.version>5.2.3</sakai.poi.version>
+        <junit.version>4.13.2</junit.version>
 	</properties>
 
 	<repositories>
