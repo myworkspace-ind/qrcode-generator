@@ -49,6 +49,7 @@ public class QRCode {
     	this.width = width;
     	this.height = height;
     }
+
 	/**
 	 * Create QR code basing logoPath and text.
 	 * @see https://simplifyingtechcode.wordpress.com/2021/05/23/generating-qr-code-in-java-within-5minutes/
